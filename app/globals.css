@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* The live Stage Point Capital site sets headings in Acumin Pro and body in
+     Poppins. Acumin is Adobe-only, so Archivo stands in for it: same
+     neo-grotesque skeleton, self-hosted through next/font. Poppins is the real
+     brand face and is used exactly as-is. */
+  --font-display: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-poppins), system-ui, sans-serif;
+
+  --color-institutional-navy: #002060;
+  --color-navy-deep: #001233;
+  --color-navy-tint: #eef2f9;
+  --color-steel-teal: #66a7b8;
+  --color-steel-teal-tint: #eaf2f4;
+  /* The brand teal is only 2.72:1 on white, so it fails WCAG AA as text. This
+     is the same hue (194deg) darkened until it clears 4.5:1 (measured 4.80:1).
+     Use it for any teal TEXT on a light background; --color-steel-teal stays
+     the brand value for borders, fills, and large decorative marks. */
+  --color-steel-teal-deep: #3d7a8c;
+  --color-neutral-white: #ffffff;
+  --color-neutral-paper: #f8fafc;
+  --color-neutral-ink: #1a1a1a;
+  --color-neutral-slate: #334155;
+  --color-neutral-mist: #64748b;
+  --color-neutral-border: #e2e8f0;
+
+  --shadow-card-hover: 0 8px 24px rgba(0, 32, 96, 0.08);
+
+  --ease-out-standard: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-soft: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #334155;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

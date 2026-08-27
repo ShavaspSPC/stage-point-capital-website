@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-03T00:00:00Z",
+  "title": "Design System: Stage Point Master Investor Site",
+  "extensions": {
+    "colorMeta": {
+      "institutional-navy": { "role": "primary", "displayName": "Institutional Navy", "canonical": "#002060", "tonalRamp": ["#00081A", "#001233", "#001B4D", "#002060", "#0B3A8A", "#3A63B0", "#8FA6D6", "#D6E0F2"] },
+      "steel-teal": { "role": "secondary", "displayName": "Muted Steel Teal", "canonical": "#66A7B8", "tonalRamp": ["#132B31", "#20444C", "#2E5D68", "#66A7B8", "#8ABDCA", "#AED3DC", "#D2E8ED", "#EAF2F4"] },
+      "neutral-white": { "role": "neutral", "displayName": "Neutral White", "canonical": "#FFFFFF", "tonalRamp": ["#0A0A0A", "#1A1A1A", "#334155", "#64748B", "#94A3B8", "#CBD5E1", "#E2E8F0", "#FFFFFF"] },
+      "neutral-paper": { "role": "neutral", "displayName": "Neutral Paper", "canonical": "#F8FAFC", "tonalRamp": ["#0A0A0A", "#1A1A1A", "#334155", "#64748B", "#94A3B8", "#CBD5E1", "#E2E8F0", "#F8FAFC"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline only." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles throughout the page." },
+      "title": { "displayName": "Title", "purpose": "Card headings, note-term labels, team member names." },
+      "body": { "displayName": "Body", "purpose": "Paragraph copy, 65-75ch max width." },
+      "label": { "displayName": "Label", "purpose": "Eyebrow tags, nav links, stat captions; uppercase, letter-spaced." }
+    },
+    "shadows": [
+      { "name": "card-rest", "value": "none", "purpose": "Default state for all cards; separation comes from the 1px border, not shadow." },
+      { "name": "card-hover", "value": "0 8px 24px rgba(0, 32, 96, 0.08)", "purpose": "Interactive cards only, paired with a 2-4px upward translate on hover." }
+    ],
+    "motion": [
+      { "name": "ease-out-standard", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Default easing for scroll-triggered entrances (fade + upward translate)." },
+      { "name": "ease-out-soft", "value": "cubic-bezier(0.33, 1, 0.68, 1)", "purpose": "Card hover elevation and button state changes." },
+      { "name": "duration-fast", "value": "150ms", "purpose": "Micro-interactions: button hover, link underline." },
+      { "name": "duration-standard", "value": "240ms", "purpose": "Card hover elevation, nav state changes." },
+      { "name": "duration-reveal", "value": "280ms", "purpose": "Scroll-triggered section reveals; stays under the 300ms UI-transition ceiling." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "375px" },
+      { "name": "tablet", "value": "768px" },
+      { "name": "desktop", "value": "1440px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main CTA button (Request the Offering Memorandum, Speak with the Team).",
+      "html": "<button class=\"ds-btn-primary\">Request the Offering Memorandum</button>",
+      "css": ".ds-btn-primary { background: #002060; color: #FFFFFF; padding: 14px 32px; border-radius: 6px; border: none; font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 0.9375rem; letter-spacing: 0.02em; cursor: pointer; transition: background 150ms cubic-bezier(0.33, 1, 0.68, 1), transform 150ms cubic-bezier(0.33, 1, 0.68, 1); } .ds-btn-primary:hover { background: #001233; transform: translateY(-1px); } .ds-btn-primary:focus-visible { outline: 2px solid #66A7B8; outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Secondary action alongside the primary CTA.",
+      "html": "<button class=\"ds-btn-secondary\">Speak with the Team</button>",
+      "css": ".ds-btn-secondary { background: transparent; color: #002060; padding: 12.5px 30px; border-radius: 6px; border: 1.5px solid #002060; font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 0.9375rem; letter-spacing: 0.02em; cursor: pointer; transition: background 150ms cubic-bezier(0.33, 1, 0.68, 1); } .ds-btn-secondary:hover { background: #EEF2F9; } .ds-btn-secondary:focus-visible { outline: 2px solid #66A7B8; outline-offset: 2px; }"
+    },
+    {
+      "name": "Stat Card",
+      "kind": "card",
+      "refersTo": "card-stat",
+      "description": "Marquee track-record statistic with count-up numeral.",
+      "html": "<div class=\"ds-card-stat\"><span class=\"ds-card-stat-value\">50th</span><span class=\"ds-card-stat-label\">Consecutive Quarter of Positive Returns</span></div>",
+      "css": ".ds-card-stat { background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 32px; display: flex; flex-direction: column; gap: 8px; transition: box-shadow 240ms cubic-bezier(0.33, 1, 0.68, 1), transform 240ms cubic-bezier(0.33, 1, 0.68, 1); } .ds-card-stat:hover { box-shadow: 0 8px 24px rgba(0, 32, 96, 0.08); transform: translateY(-2px); } .ds-card-stat-value { font-family: Inter, system-ui, sans-serif; font-weight: 700; font-size: 2.5rem; color: #002060; line-height: 1; } .ds-card-stat-label { font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase; color: #64748B; }"
+    },
+    {
+      "name": "Note Term Card",
+      "kind": "card",
+      "refersTo": "card-stat",
+      "description": "Offering term card (1-Year / 3-Year / 5-Year note).",
+      "html": "<div class=\"ds-card-term\"><span class=\"ds-card-term-label\">1-Year Term</span><span class=\"ds-card-term-value\">9.0%</span><span class=\"ds-card-term-sub\">Annual Yield</span></div>",
+      "css": ".ds-card-term { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 32px; text-align: center; transition: box-shadow 240ms cubic-bezier(0.33, 1, 0.68, 1), transform 240ms cubic-bezier(0.33, 1, 0.68, 1), border-color 240ms; } .ds-card-term:hover { box-shadow: 0 8px 24px rgba(0, 32, 96, 0.08); transform: translateY(-2px); border-color: #66A7B8; } .ds-card-term-label { display: block; font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase; color: #64748B; margin-bottom: 12px; } .ds-card-term-value { display: block; font-family: Inter, system-ui, sans-serif; font-weight: 700; font-size: 2.75rem; color: #002060; line-height: 1; } .ds-card-term-sub { display: block; font-family: Inter, system-ui, sans-serif; font-weight: 500; font-size: 0.9375rem; color: #334155; margin-top: 8px; }"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Sticky top navigation with wordmark, anchor links, and primary CTA.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-nav-wordmark\">Stage Point Master</span><div class=\"ds-nav-links\"><a href=\"#offering\">Offering</a><a href=\"#track-record\">Track Record</a><a href=\"#protection\">Protection</a><a href=\"#team\">Team</a></div><button class=\"ds-btn-primary\">Request the OM</button></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 32px; background: #FFFFFF; border-bottom: 1px solid #E2E8F0; } .ds-nav-wordmark { font-family: Source Serif 4, Georgia, serif; font-weight: 500; font-size: 1.25rem; color: #002060; } .ds-nav-links { display: flex; gap: 28px; } .ds-nav-links a { font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase; color: #334155; text-decoration: none; padding-bottom: 4px; border-bottom: 2px solid transparent; transition: color 150ms, border-color 150ms; } .ds-nav-links a:hover { color: #002060; border-color: #66A7B8; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Offering Memorandum, Rendered",
+    "overview": "This system treats the web page the way Stage Point treats a loan: conservatively underwritten, fully collateralized by evidence, and free of unnecessary risk. The aesthetic is the calm confidence of a well-prepared institutional document, not the energy of a startup pitch. Deep navy and muted steel-teal read as bank-grade rather than fintech-trendy; generous whitespace and a serif display face borrow the gravitas of print finance while the interface itself stays modern, fast, and legible on a phone. The system explicitly rejects the crypto/fintech hype register and the generic SaaS-startup register. Nothing on the page should feel like it was assembled from a landing-page template.",
+    "keyCharacteristics": [
+      "Deep navy dominant (60-70% of visual weight), steel-teal reserved for accents and the single most important element per section.",
+      "Serif display headlines paired with a clean grotesque sans for body copy and UI chrome.",
+      "Flat, bordered surfaces over heavy shadows; depth from tonal layering and hairline borders.",
+      "Numbers render large and unadorned; the statistic is the persuasion."
+    ],
+    "rules": [
+      { "name": "The One Accent Rule", "body": "Steel teal never exceeds roughly 10% of any given section's visual weight. It marks the single most important number or interactive element on screen, never a background or a decorative flourish.", "section": "colors" },
+      { "name": "The No-Gradient Rule", "body": "Flat color fields only. No gradients, no glassmorphism, no neon glows. Depth comes from tonal layering and hairline borders, never from blur or transparency effects.", "section": "colors" },
+      { "name": "The Serif-For-Weight Rule", "body": "Serif type appears only at Display and Headline sizes, where its gravitas reads clearly. Anything smaller stays in Inter.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Surfaces are flat and bordered at rest. Shadow is a response to interaction, never a resting state.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep steel-teal (#66A7B8) under roughly 10% of any section's visual weight.",
+      "Do use flat, bordered surfaces (1px #E2E8F0) as the default container style; reserve shadow for hover states only.",
+      "Do set all body copy in Inter at Neutral Slate (#334155) or Neutral Ink (#1A1A1A), never pure black on pure white for large text blocks.",
+      "Do reserve the serif (Source Serif 4) for Display and Headline sizes only.",
+      "Do let statistics render large and unadorned."
+    ],
+    "donts": [
+      "Don't use gradients, glassmorphism, neon glows, or any crypto/fintech hype visual language.",
+      "Don't use bouncy illustrations, purple gradient blobs, or Get-Started-Free urgency patterns borrowed from generic SaaS landing pages.",
+      "Don't use em dashes as sentence punctuation, exclamation marks, all-caps sentences, or emojis anywhere on the page.",
+      "Don't use border-left or edge stripes as a decorative accent on cards.",
+      "Don't scale elements from zero on entrance, animate box-shadow or non-GPU properties, or run any UI transition longer than 300ms.",
+      "Don't let any animation ignore prefers-reduced-motion."
+    ]
+  }
+}
