@@ -6,6 +6,8 @@ colors:
   navy-deep: "#001233"
   navy-tint: "#EEF2F9"
   steel-teal: "#66A7B8"
+  steel-teal-deep: "#3D7A8C"
+  steel-teal-soft: "#8ABDCA"
   steel-teal-tint: "#EAF2F4"
   neutral-white: "#FFFFFF"
   neutral-paper: "#F8FAFC"
@@ -83,13 +85,13 @@ components:
 
 **Creative North Star: "The Offering Memorandum, Rendered"**
 
-This system treats the web page the way Stage Point treats a loan: conservatively underwritten, fully collateralized by evidence, and free of unnecessary risk. The aesthetic is the calm confidence of a well-prepared institutional document, not the energy of a startup pitch. Deep navy and muted steel-teal read as bank-grade rather than fintech-trendy; generous whitespace and a serif display face borrow the gravitas of print finance (offering memoranda, annual letters) while the interface itself stays modern, fast, and legible on a phone.
+This system treats the web page the way Stage Point treats a loan: conservatively underwritten, fully collateralized by evidence, and free of unnecessary risk. The aesthetic is the calm confidence of a well-prepared institutional document, not the energy of a startup pitch. Deep navy and muted steel-teal read as bank-grade rather than fintech-trendy; generous whitespace and a firm neo-grotesque display face carry the gravitas of print finance (offering memoranda, annual letters) while the interface itself stays modern, fast, and legible on a phone.
 
 The system explicitly rejects the crypto/fintech hype register (neon gradients, countdown timers, glassmorphism, emoji-style icons, "APY" energy) and the generic SaaS-startup register (purple gradient blobs, bouncy illustrations, "Get Started Free" urgency). Nothing on the page should feel like it was assembled from a landing-page template; every section earns its layout from the content it carries.
 
 **Key Characteristics:**
 - Deep navy as the dominant color (60-70% of visual weight via type, nav, and section anchors), steel-teal reserved for accents, data highlights, and interactive states.
-- Serif display headlines paired with a clean grotesque sans for body copy and UI chrome, evoking print-finance credibility without looking dated.
+- Archivo headlines paired with Poppins for body copy and UI chrome. There is no serif: credibility comes from scale, weight, and the navy palette, not from a print-finance typeface.
 - Flat, bordered surfaces over heavy shadows; depth communicated through tonal layering and hairline borders, not drop shadows.
 - Numbers are the hero: statistics render large, precise, and unadorned rather than wrapped in decorative iconography.
 
@@ -102,6 +104,8 @@ The palette is restrained and asymmetric: one dominant navy, one disciplined acc
 
 ### Secondary
 - **Muted Steel Teal** (#66A7B8): The accent. Used sparingly for interactive highlights, chart accents, stat emphasis, hover states, and the payment-waterfall "your position" marker. Never used as a large background fill; its rarity is the point.
+- **Deep Steel Teal** (#3D7A8C): The same hue darkened until it clears 4.5:1 on white (4.80:1). Use it for any teal text on a light background and for the second step of a ranked ramp; the brand teal itself is only 2.72:1 on white, so it stays for fills, borders, and large decorative marks.
+- **Soft Steel Teal** (#8ABDCA): The lighter step of the brand teal, for the fourth step of a ranked ramp (the portfolio bars). Decorative fills only, never text.
 
 ### Neutral
 - **Navy Deep** (#001233): Hover/active state for navy surfaces and buttons.
@@ -170,9 +174,10 @@ The system is flat by default. Depth is conveyed through tonal layering (white c
 - **Focus:** Border shifts to Institutional Navy, 2px steel-teal focus ring for keyboard visibility.
 
 ### Navigation
-- **Style:** Sticky top bar, white background with a bottom hairline border (Neutral Border) once scrolled. Wordmark left in navy, anchor links in Label style (uppercase, letter-spaced), primary CTA button right.
-- **States:** Anchor links default Neutral Slate, hover/active Institutional Navy with a steel-teal underline that animates in on hover.
-- **Mobile:** Collapses to wordmark plus a single CTA button; anchor links move to a slide-down panel.
+- **Style:** Sticky top bar (72px), white background with a bottom hairline border (Neutral Border). Logo left, links in sentence case at 14px medium weight (not uppercase), primary "Invest" button right (Institutional Navy, 14px semibold, 6px radius). "Vehicles" and "Team" reveal a dropdown of their children on hover or focus; each is also a real link to its own landing page.
+- **States:** Links default Neutral Slate; hover and the current page are Institutional Navy. Focus-visible adds the 2px steel-teal outline.
+- **Section rail:** The offering page adds a second sticky bar (13px medium, in Neutral Mist) beneath the header, one link per section, with the section in view marked by a 2px steel-teal underline and Institutional Navy text. Anchor jumps pull each section up so its heading clears both bars.
+- **Mobile:** Collapses to the logo plus a menu button; links move to a slide-down panel. The section rail scrolls horizontally.
 
 ### Stat Callout (signature component)
 Large count-up numerals in bold Poppins (numerals should feel precise and tabular), Institutional Navy, with a Label-style caption beneath in Neutral Mist. The figure is always present in the server-rendered HTML; the count-up is an enhancement that runs only once the client confirms the stat is below the fold. Used for the track-record marquee statistics (50th consecutive quarter, $205M originations, zero principal loss).
@@ -192,5 +197,5 @@ Large count-up numerals in bold Poppins (numerals should feel precise and tabula
 - **Don't** use bouncy illustrations, purple gradient blobs, or "Get Started Free" urgency patterns borrowed from generic SaaS landing pages.
 - **Don't** use em dashes as sentence punctuation, exclamation marks, all-caps sentences, or emojis anywhere on the page.
 - **Don't** use border-left or edge stripes as a decorative accent on cards; depth and separation come from borders and whitespace, not color bars.
-- **Don't** scale elements from zero on entrance, animate box-shadow or non-GPU properties, or run any UI transition longer than 300ms.
+- **Don't** scale elements from zero on entrance, animate box-shadow or non-GPU properties, or run any UI transition longer than 300ms. The one exception is data arriving: a bar filling from its baseline and a figure counting up (about 1.1 to 1.4 seconds) are the number being drawn, not the interface moving, and they use a transform, never a layout property.
 - **Don't** let any animation ignore `prefers-reduced-motion`; every scroll reveal and count-up must degrade to an immediate static state.

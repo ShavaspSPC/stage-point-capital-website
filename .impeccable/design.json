@@ -1,36 +1,39 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-03T00:00:00Z",
+  "generatedAt": "2026-09-26T00:00:00Z",
   "title": "Design System: Stage Point Master Investor Site",
   "extensions": {
     "colorMeta": {
       "institutional-navy": { "role": "primary", "displayName": "Institutional Navy", "canonical": "#002060", "tonalRamp": ["#00081A", "#001233", "#001B4D", "#002060", "#0B3A8A", "#3A63B0", "#8FA6D6", "#D6E0F2"] },
       "steel-teal": { "role": "secondary", "displayName": "Muted Steel Teal", "canonical": "#66A7B8", "tonalRamp": ["#132B31", "#20444C", "#2E5D68", "#66A7B8", "#8ABDCA", "#AED3DC", "#D2E8ED", "#EAF2F4"] },
+      "steel-teal-deep": { "role": "secondary", "displayName": "Deep Steel Teal", "canonical": "#3D7A8C", "tonalRamp": ["#000E13", "#012630", "#014251", "#1E5E6F", "#4D8A9C", "#7BB9CC", "#A1E0F3", "#D6F5FF"] },
+      "steel-teal-soft": { "role": "secondary", "displayName": "Soft Steel Teal", "canonical": "#8ABDCA", "tonalRamp": ["#000E12", "#00272F", "#0B424D", "#2C5D69", "#588995", "#85B8C5", "#AADEEC", "#D3F6FF"] },
       "neutral-white": { "role": "neutral", "displayName": "Neutral White", "canonical": "#FFFFFF", "tonalRamp": ["#0A0A0A", "#1A1A1A", "#334155", "#64748B", "#94A3B8", "#CBD5E1", "#E2E8F0", "#FFFFFF"] },
       "neutral-paper": { "role": "neutral", "displayName": "Neutral Paper", "canonical": "#F8FAFC", "tonalRamp": ["#0A0A0A", "#1A1A1A", "#334155", "#64748B", "#94A3B8", "#CBD5E1", "#E2E8F0", "#F8FAFC"] }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "Hero headline only." },
-      "headline": { "displayName": "Headline", "purpose": "Section titles throughout the page." },
-      "title": { "displayName": "Title", "purpose": "Card headings, note-term labels, team member names." },
-      "body": { "displayName": "Body", "purpose": "Paragraph copy, 65-75ch max width." },
-      "label": { "displayName": "Label", "purpose": "Eyebrow tags, nav links, stat captions; uppercase, letter-spaced." }
+      "display": { "displayName": "Display", "purpose": "Archivo. Hero headline only." },
+      "headline": { "displayName": "Headline", "purpose": "Archivo. Section titles throughout the page." },
+      "title": { "displayName": "Title", "purpose": "Poppins. Card headings, note-term labels, team member names." },
+      "body": { "displayName": "Body", "purpose": "Poppins. Paragraph copy, 65-75ch max width." },
+      "label": { "displayName": "Label", "purpose": "Poppins. Small labels, stat captions; uppercase, letter-spaced. Never below 13px." }
     },
     "shadows": [
       { "name": "card-rest", "value": "none", "purpose": "Default state for all cards; separation comes from the 1px border, not shadow." },
-      { "name": "card-hover", "value": "0 8px 24px rgba(0, 32, 96, 0.08)", "purpose": "Interactive cards only, paired with a 2-4px upward translate on hover." }
+      { "name": "card-hover", "value": "0 8px 24px rgba(0, 32, 96, 0.08)", "purpose": "Interactive cards only, paired with a 2px upward translate on hover." }
     ],
     "motion": [
-      { "name": "ease-out-standard", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Default easing for scroll-triggered entrances (fade + upward translate)." },
-      { "name": "ease-out-soft", "value": "cubic-bezier(0.33, 1, 0.68, 1)", "purpose": "Card hover elevation and button state changes." },
-      { "name": "duration-fast", "value": "150ms", "purpose": "Micro-interactions: button hover, link underline." },
-      { "name": "duration-standard", "value": "240ms", "purpose": "Card hover elevation, nav state changes." },
-      { "name": "duration-reveal", "value": "280ms", "purpose": "Scroll-triggered section reveals; stays under the 300ms UI-transition ceiling." }
+      { "name": "ease-out-standard", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Scroll-triggered entrances, count-ups, and the calculator chart reveal." },
+      { "name": "ease-out-soft", "value": "cubic-bezier(0.23, 1, 0.32, 1)", "purpose": "Card hover elevation, link and button state changes." },
+      { "name": "duration-fast", "value": "150ms", "purpose": "Micro-interactions: button and link hover, focus." },
+      { "name": "duration-standard", "value": "240ms", "purpose": "Card hover elevation and border-color changes." },
+      { "name": "duration-reveal", "value": "280ms", "purpose": "Scroll-triggered section reveals; stays under the 300ms UI-transition ceiling." },
+      { "name": "duration-data", "value": "1100ms to 1400ms", "purpose": "Count-ups and bar fills only: the figure arriving, not the interface moving. Uses a transform, never a layout property." }
     ],
     "breakpoints": [
-      { "name": "mobile", "value": "375px" },
-      { "name": "tablet", "value": "768px" },
-      { "name": "desktop", "value": "1440px" }
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
     ]
   },
   "components": [
@@ -38,72 +41,90 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Main CTA button (Request the Offering Memorandum, Speak with the Team).",
+      "description": "Main CTA (Invest, Request the Offering Memorandum).",
       "html": "<button class=\"ds-btn-primary\">Request the Offering Memorandum</button>",
-      "css": ".ds-btn-primary { background: #002060; color: #FFFFFF; padding: 14px 32px; border-radius: 6px; border: none; font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 0.9375rem; letter-spacing: 0.02em; cursor: pointer; transition: background 150ms cubic-bezier(0.33, 1, 0.68, 1), transform 150ms cubic-bezier(0.33, 1, 0.68, 1); } .ds-btn-primary:hover { background: #001233; transform: translateY(-1px); } .ds-btn-primary:focus-visible { outline: 2px solid #66A7B8; outline-offset: 2px; }"
+      "css": ".ds-btn-primary { background: #002060; color: #FFFFFF; padding: 14px 32px; border-radius: 6px; border: none; font-family: Poppins, system-ui, sans-serif; font-weight: 600; font-size: 0.9375rem; cursor: pointer; transition: background-color 150ms cubic-bezier(0.23, 1, 0.32, 1), transform 150ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn-primary:hover { background: #001233; } .ds-btn-primary:active { transform: scale(0.98); } .ds-btn-primary:focus-visible { outline: 2px solid #66A7B8; outline-offset: 2px; }"
     },
     {
       "name": "Secondary Button",
       "kind": "button",
       "refersTo": "button-secondary",
-      "description": "Secondary action alongside the primary CTA.",
+      "description": "Secondary action alongside the primary CTA (Speak with the Team).",
       "html": "<button class=\"ds-btn-secondary\">Speak with the Team</button>",
-      "css": ".ds-btn-secondary { background: transparent; color: #002060; padding: 12.5px 30px; border-radius: 6px; border: 1.5px solid #002060; font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 0.9375rem; letter-spacing: 0.02em; cursor: pointer; transition: background 150ms cubic-bezier(0.33, 1, 0.68, 1); } .ds-btn-secondary:hover { background: #EEF2F9; } .ds-btn-secondary:focus-visible { outline: 2px solid #66A7B8; outline-offset: 2px; }"
+      "css": ".ds-btn-secondary { background: #FFFFFF; color: #002060; padding: 12.5px 30px; border-radius: 6px; border: 1.5px solid #002060; font-family: Poppins, system-ui, sans-serif; font-weight: 600; font-size: 0.9375rem; cursor: pointer; transition: background-color 150ms cubic-bezier(0.23, 1, 0.32, 1), transform 150ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn-secondary:hover { background: #EEF2F9; } .ds-btn-secondary:active { transform: scale(0.98); } .ds-btn-secondary:focus-visible { outline: 2px solid #66A7B8; outline-offset: 2px; }"
     },
     {
       "name": "Stat Card",
       "kind": "card",
       "refersTo": "card-stat",
-      "description": "Marquee track-record statistic with count-up numeral.",
-      "html": "<div class=\"ds-card-stat\"><span class=\"ds-card-stat-value\">50th</span><span class=\"ds-card-stat-label\">Consecutive Quarter of Positive Returns</span></div>",
-      "css": ".ds-card-stat { background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 32px; display: flex; flex-direction: column; gap: 8px; transition: box-shadow 240ms cubic-bezier(0.33, 1, 0.68, 1), transform 240ms cubic-bezier(0.33, 1, 0.68, 1); } .ds-card-stat:hover { box-shadow: 0 8px 24px rgba(0, 32, 96, 0.08); transform: translateY(-2px); } .ds-card-stat-value { font-family: Inter, system-ui, sans-serif; font-weight: 700; font-size: 2.5rem; color: #002060; line-height: 1; } .ds-card-stat-label { font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase; color: #64748B; }"
+      "description": "Track-record statistic: a large bold figure with a Label-style caption. The figure is always in the server HTML; the count-up is an enhancement.",
+      "html": "<div class=\"ds-card-stat\"><span class=\"ds-card-stat-value\">$205M+</span><span class=\"ds-card-stat-label\">Total originations, ~757 loans</span></div>",
+      "css": ".ds-card-stat { background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 8px; transition: box-shadow 240ms cubic-bezier(0.23, 1, 0.32, 1), transform 240ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-card-stat:hover { box-shadow: 0 8px 24px rgba(0, 32, 96, 0.08); transform: translateY(-2px); } .ds-card-stat-value { font-family: Poppins, system-ui, sans-serif; font-weight: 700; font-size: 2.25rem; color: #002060; line-height: 1.1; } .ds-card-stat-label { font-family: Poppins, system-ui, sans-serif; font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.06em; text-transform: uppercase; color: #64748B; }"
     },
     {
-      "name": "Note Term Card",
+      "name": "Term Pill",
+      "kind": "chip",
+      "refersTo": "button-primary",
+      "description": "Selector for a note term in the calculator. Selected is filled navy; unselected is a hairline outline that picks up teal on hover. Grows to 44px on touch devices.",
+      "html": "<div class=\"ds-pills\"><button class=\"ds-pill\">6 mo</button><button class=\"ds-pill\" aria-pressed=\"true\">12 mo</button><button class=\"ds-pill\">24 mo</button></div>",
+      "css": ".ds-pills { display: flex; gap: 8px; } .ds-pill { font-family: Poppins, system-ui, sans-serif; font-weight: 600; font-size: 0.8125rem; padding: 6px 14px; border-radius: 9999px; border: 1px solid #E2E8F0; background: transparent; color: #334155; cursor: pointer; transition: color 150ms cubic-bezier(0.23, 1, 0.32, 1), border-color 150ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-pill:hover { border-color: #66A7B8; color: #002060; } .ds-pill[aria-pressed=\"true\"] { background: #002060; border-color: #002060; color: #FFFFFF; } .ds-pill:focus-visible { outline: 2px solid #66A7B8; outline-offset: 2px; } @media (pointer: coarse) { .ds-pill { min-height: 44px; padding: 6px 16px; } }"
+    },
+    {
+      "name": "Team Card",
       "kind": "card",
       "refersTo": "card-stat",
-      "description": "Offering term card (1-Year / 3-Year / 5-Year note).",
-      "html": "<div class=\"ds-card-term\"><span class=\"ds-card-term-label\">1-Year Term</span><span class=\"ds-card-term-value\">9.0%</span><span class=\"ds-card-term-sub\">Annual Yield</span></div>",
-      "css": ".ds-card-term { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 32px; text-align: center; transition: box-shadow 240ms cubic-bezier(0.33, 1, 0.68, 1), transform 240ms cubic-bezier(0.33, 1, 0.68, 1), border-color 240ms; } .ds-card-term:hover { box-shadow: 0 8px 24px rgba(0, 32, 96, 0.08); transform: translateY(-2px); border-color: #66A7B8; } .ds-card-term-label { display: block; font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase; color: #64748B; margin-bottom: 12px; } .ds-card-term-value { display: block; font-family: Inter, system-ui, sans-serif; font-weight: 700; font-size: 2.75rem; color: #002060; line-height: 1; } .ds-card-term-sub { display: block; font-family: Inter, system-ui, sans-serif; font-weight: 500; font-size: 0.9375rem; color: #334155; margin-top: 8px; }"
+      "description": "Linked card for a team member: square photo, full name with a small arrow marking it as a link, short title. Lifts and picks up a teal border on hover.",
+      "html": "<a class=\"ds-card-team\" href=\"#\"><span class=\"ds-card-team-photo\">WQ</span><span class=\"ds-card-team-body\"><span class=\"ds-card-team-name\">Whitney Quillen<svg width=\"15\" height=\"15\" viewBox=\"0 0 20 20\" fill=\"none\" aria-hidden=\"true\"><path d=\"M4 10h12M11 5l5 5-5 5\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><span class=\"ds-card-team-title\">Chief Executive Officer &amp; General Counsel</span></span></a>",
+      "css": ".ds-card-team { display: flex; flex-direction: column; overflow: hidden; width: 200px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; text-decoration: none; transition: box-shadow 240ms cubic-bezier(0.23, 1, 0.32, 1), transform 240ms cubic-bezier(0.23, 1, 0.32, 1), border-color 240ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-card-team:hover { transform: translateY(-2px); border-color: #66A7B8; box-shadow: 0 8px 24px rgba(0, 32, 96, 0.08); } .ds-card-team:focus-visible { outline: 2px solid #66A7B8; outline-offset: 2px; } .ds-card-team-photo { display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #EAF2F4; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 2rem; color: #3D7A8C; } .ds-card-team-body { display: flex; flex-direction: column; justify-content: center; min-height: 88px; padding: 20px; } .ds-card-team-name { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-family: Poppins, system-ui, sans-serif; font-weight: 600; font-size: 15px; color: #002060; } .ds-card-team-name svg { color: #3D7A8C; transition: transform 150ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-card-team:hover .ds-card-team-name svg { transform: translateX(4px); } .ds-card-team-title { margin-top: 4px; font-family: Poppins, system-ui, sans-serif; font-size: 13px; line-height: 1.35; color: #64748B; }"
     },
     {
       "name": "Navigation Bar",
       "kind": "nav",
       "refersTo": "nav",
-      "description": "Sticky top navigation with wordmark, anchor links, and primary CTA.",
-      "html": "<nav class=\"ds-nav\"><span class=\"ds-nav-wordmark\">Stage Point Master</span><div class=\"ds-nav-links\"><a href=\"#offering\">Offering</a><a href=\"#track-record\">Track Record</a><a href=\"#protection\">Protection</a><a href=\"#team\">Team</a></div><button class=\"ds-btn-primary\">Request the OM</button></nav>",
-      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 32px; background: #FFFFFF; border-bottom: 1px solid #E2E8F0; } .ds-nav-wordmark { font-family: Source Serif 4, Georgia, serif; font-weight: 500; font-size: 1.25rem; color: #002060; } .ds-nav-links { display: flex; gap: 28px; } .ds-nav-links a { font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase; color: #334155; text-decoration: none; padding-bottom: 4px; border-bottom: 2px solid transparent; transition: color 150ms, border-color 150ms; } .ds-nav-links a:hover { color: #002060; border-color: #66A7B8; }"
+      "description": "Sticky 72px top bar: logo left, sentence-case links, navy Invest button right. Vehicles and Team reveal a dropdown on hover or focus.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-nav-logo\">Stage Point Capital</span><div class=\"ds-nav-links\"><a href=\"#\">About</a><a href=\"#\" aria-current=\"page\">Vehicles</a><a href=\"#\">Team</a><a href=\"#\">Contact</a></div><button class=\"ds-nav-cta\">Invest</button></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px; padding: 0 24px; background: #FFFFFF; border-bottom: 1px solid #E2E8F0; } .ds-nav-logo { font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 1.25rem; color: #002060; } .ds-nav-links { display: flex; gap: 4px; } .ds-nav-links a { padding: 8px 12px; border-radius: 6px; font-family: Poppins, system-ui, sans-serif; font-weight: 500; font-size: 14px; color: #334155; text-decoration: none; transition: color 150ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-nav-links a:hover, .ds-nav-links a[aria-current=\"page\"] { color: #002060; } .ds-nav-links a:focus-visible { outline: 2px solid #66A7B8; outline-offset: 2px; } .ds-nav-cta { padding: 10px 24px; border: none; border-radius: 6px; background: #002060; color: #FFFFFF; font-family: Poppins, system-ui, sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; transition: background-color 150ms cubic-bezier(0.23, 1, 0.32, 1), transform 150ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-nav-cta:hover { background: #001233; } .ds-nav-cta:active { transform: scale(0.98); }"
+    },
+    {
+      "name": "Section Rail",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Second sticky bar on the offering page, one link per section. The section in view takes navy text and a 2px steel-teal underline.",
+      "html": "<nav class=\"ds-rail\"><a href=\"#\">Opportunity</a><a href=\"#\">Offering</a><a href=\"#\" aria-current=\"true\">Calculator</a><a href=\"#\">Track Record</a><a href=\"#\">Protection</a><a href=\"#\">Team</a></nav>",
+      "css": ".ds-rail { display: flex; gap: 4px; padding: 0 24px; overflow-x: auto; background: #FFFFFF; border-bottom: 1px solid #E2E8F0; } .ds-rail a { padding: 12px; font-family: Poppins, system-ui, sans-serif; font-weight: 500; font-size: 13px; white-space: nowrap; color: #64748B; text-decoration: none; border-bottom: 2px solid transparent; transition: color 150ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-rail a:hover { color: #002060; } .ds-rail a[aria-current=\"true\"] { color: #002060; border-bottom-color: #66A7B8; } .ds-rail a:focus-visible { outline: 2px solid #66A7B8; outline-offset: -2px; }"
     }
   ],
   "narrative": {
     "northStar": "The Offering Memorandum, Rendered",
-    "overview": "This system treats the web page the way Stage Point treats a loan: conservatively underwritten, fully collateralized by evidence, and free of unnecessary risk. The aesthetic is the calm confidence of a well-prepared institutional document, not the energy of a startup pitch. Deep navy and muted steel-teal read as bank-grade rather than fintech-trendy; generous whitespace and a serif display face borrow the gravitas of print finance while the interface itself stays modern, fast, and legible on a phone. The system explicitly rejects the crypto/fintech hype register and the generic SaaS-startup register. Nothing on the page should feel like it was assembled from a landing-page template.",
+    "overview": "This system treats the web page the way Stage Point treats a loan: conservatively underwritten, fully collateralized by evidence, and free of unnecessary risk. The aesthetic is the calm confidence of a well-prepared institutional document, not the energy of a startup pitch. Deep navy and muted steel-teal read as bank-grade rather than fintech-trendy; generous whitespace and a firm neo-grotesque display face carry the gravitas of print finance (offering memoranda, annual letters) while the interface itself stays modern, fast, and legible on a phone.\n\nThe system explicitly rejects the crypto/fintech hype register (neon gradients, countdown timers, glassmorphism, emoji-style icons, \"APY\" energy) and the generic SaaS-startup register (purple gradient blobs, bouncy illustrations, \"Get Started Free\" urgency). Nothing on the page should feel like it was assembled from a landing-page template; every section earns its layout from the content it carries.",
     "keyCharacteristics": [
-      "Deep navy dominant (60-70% of visual weight), steel-teal reserved for accents and the single most important element per section.",
-      "Serif display headlines paired with a clean grotesque sans for body copy and UI chrome.",
-      "Flat, bordered surfaces over heavy shadows; depth from tonal layering and hairline borders.",
-      "Numbers render large and unadorned; the statistic is the persuasion."
+      "Deep navy as the dominant color (60-70% of visual weight via type, nav, and section anchors), steel-teal reserved for accents, data highlights, and interactive states.",
+      "Archivo headlines paired with Poppins for body copy and UI chrome. There is no serif: credibility comes from scale, weight, and the navy palette, not from a print-finance typeface.",
+      "Flat, bordered surfaces over heavy shadows; depth communicated through tonal layering and hairline borders, not drop shadows.",
+      "Numbers are the hero: statistics render large, precise, and unadorned rather than wrapped in decorative iconography."
     ],
     "rules": [
       { "name": "The One Accent Rule", "body": "Steel teal never exceeds roughly 10% of any given section's visual weight. It marks the single most important number or interactive element on screen, never a background or a decorative flourish.", "section": "colors" },
-      { "name": "The No-Gradient Rule", "body": "Flat color fields only. No gradients, no glassmorphism, no neon glows. Depth comes from tonal layering and hairline borders, never from blur or transparency effects.", "section": "colors" },
-      { "name": "The Serif-For-Weight Rule", "body": "Serif type appears only at Display and Headline sizes, where its gravitas reads clearly. Anything smaller stays in Inter.", "section": "typography" },
+      { "name": "The No-Gradient Rule", "body": "Flat color fields only. No gradients, no glassmorphism, no neon glows. Depth comes from tonal layering (navy tint vs. white vs. paper) and hairline borders, never from blur or transparency effects.", "section": "colors" },
+      { "name": "The Two-Face Rule", "body": "Archivo is for headings at Headline size and up; everything smaller (body, labels, figures, UI chrome) is Poppins. Do not introduce a third family.", "section": "typography" },
+      { "name": "The 13px Floor", "body": "No running text or label is set below 13px (the Label size). The one exception is a short uppercase badge inside a diagram (the \"Your position\" tag, the \"Paid first\" rail), which may go to 12px because capitals read larger. This applies to chart axis and annotation text too: draw charts in real pixels so their text is never scaled below the floor.", "section": "typography" },
       { "name": "The Flat-By-Default Rule", "body": "Surfaces are flat and bordered at rest. Shadow is a response to interaction, never a resting state.", "section": "elevation" }
     ],
     "dos": [
-      "Do keep steel-teal (#66A7B8) under roughly 10% of any section's visual weight.",
+      "Do keep steel-teal (#66A7B8) under roughly 10% of any section's visual weight; it marks the single most important element, not a background.",
       "Do use flat, bordered surfaces (1px #E2E8F0) as the default container style; reserve shadow for hover states only.",
-      "Do set all body copy in Inter at Neutral Slate (#334155) or Neutral Ink (#1A1A1A), never pure black on pure white for large text blocks.",
-      "Do reserve the serif (Source Serif 4) for Display and Headline sizes only.",
-      "Do let statistics render large and unadorned."
+      "Do set all body copy in Poppins at Neutral Slate (#334155) or Neutral Ink (#1A1A1A), never pure black on pure white for large text blocks.",
+      "Do reserve Archivo for Headline sizes and up.",
+      "Do ship content in its final state in the server HTML. Entrance animations (fades, count-ups, bar fills) may only collapse an element on the client after it is confirmed below the fold, so no-JS readers, crawlers, and print see the real figures.",
+      "Do let statistics render large and unadorned; the number is the persuasion, not an icon next to it."
     ],
     "donts": [
-      "Don't use gradients, glassmorphism, neon glows, or any crypto/fintech hype visual language.",
-      "Don't use bouncy illustrations, purple gradient blobs, or Get-Started-Free urgency patterns borrowed from generic SaaS landing pages.",
+      "Don't use gradients, glassmorphism, neon glows, or any \"crypto/fintech hype\" visual language; this is an institutional credit fund, not an APY dashboard.",
+      "Don't use bouncy illustrations, purple gradient blobs, or \"Get Started Free\" urgency patterns borrowed from generic SaaS landing pages.",
       "Don't use em dashes as sentence punctuation, exclamation marks, all-caps sentences, or emojis anywhere on the page.",
-      "Don't use border-left or edge stripes as a decorative accent on cards.",
-      "Don't scale elements from zero on entrance, animate box-shadow or non-GPU properties, or run any UI transition longer than 300ms.",
-      "Don't let any animation ignore prefers-reduced-motion."
+      "Don't use border-left or edge stripes as a decorative accent on cards; depth and separation come from borders and whitespace, not color bars.",
+      "Don't scale elements from zero on entrance, animate box-shadow or non-GPU properties, or run any UI transition longer than 300ms. The one exception is data arriving: a bar filling from its baseline and a figure counting up (about 1.1 to 1.4 seconds) are the number being drawn, not the interface moving, and they use a transform, never a layout property.",
+      "Don't let any animation ignore `prefers-reduced-motion`; every scroll reveal and count-up must degrade to an immediate static state."
     ]
   }
 }
