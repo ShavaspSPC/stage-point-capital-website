@@ -195,6 +195,7 @@ function ProjectionChart({
   monthlyRate,
   endingValue,
   resetKey,
+  summary,
 }: {
   points: Point[];
   reinvest: boolean;
@@ -204,10 +205,14 @@ function ProjectionChart({
   endingValue: number;
   /** Changes when the shape of the chart changes; a hover from before is stale. */
   resetKey: string;
+  /** Plain-language description of the whole curve, for screen readers. */
+  summary: string;
 }) {
   const gradientId = useId();
   const chartRef = useRef<HTMLDivElement>(null);
   const [hover, setHover] = useState<{ m: number; key: string } | null>(null);
+  // Spoken only for keyboard use, so a mouse passing over the chart is silent.
+  const [announcement, setAnnouncement] = useState("");
 
   const armed = useArmedReveal(chartRef);
   const inView = useInView(chartRef, { once: true, amount: 0.4 });
@@ -247,6 +252,51 @@ function ProjectionChart({
     setHover({ m: Math.min(Math.max(m, 0), months), key: resetKey });
   }
 
+  function moveTo(m: number) {
+    const clamped = Math.min(Math.max(m, 0), months);
+    setHover({ m: clamped, key: resetKey });
+    setAnnouncement(`${clamped === 0 ? "Start" : `Month ${clamped}`}: ${formatCurrency(valueAt(clamped))}`);
+  }
+
+  // The chart is the only way to read the value at an intermediate month, so it
+  // has to be reachable without a pointer: arrows step by a month, Page keys by
+  // a half-year, Home and End jump to the ends, Escape dismisses.
+  function handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
+    const from = activeM;
+    let next: number | null = null;
+    switch (e.key) {
+      case "ArrowRight":
+      case "ArrowUp":
+        next = from === null ? 0 : from + 1;
+        break;
+      case "ArrowLeft":
+      case "ArrowDown":
+        next = from === null ? months : from - 1;
+        break;
+      case "PageUp":
+        next = (from ?? 0) + 6;
+        break;
+      case "PageDown":
+        next = (from ?? months) - 6;
+        break;
+      case "Home":
+        next = 0;
+        break;
+      case "End":
+        next = months;
+        break;
+      case "Escape":
+        setHover(null);
+        setAnnouncement("");
+        e.preventDefault();
+        return;
+      default:
+        return;
+    }
+    e.preventDefault();
+    moveTo(next);
+  }
+
   return (
     // Rendered at its final state in the server HTML; the entrance only arms
     // once the client confirms the chart sits below the fold.
@@ -259,7 +309,16 @@ function ProjectionChart({
       transition={collapsed ? { duration: 0 } : { duration: 0.5, ease: EASE }}
     >
       <div
-        className="absolute inset-0 touch-pan-y"
+        role="group"
+        aria-label="Growth over time. Use the arrow keys to read the value at each month."
+        tabIndex={0}
+        className="absolute inset-0 touch-pan-y rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-steel-teal"
+        onKeyDown={handleKeyDown}
+        onBlur={() => {
+          // Tapping or tabbing away is what dismisses a touched or keyed value.
+          setHover(null);
+          setAnnouncement("");
+        }}
         onPointerDown={handlePointer}
         onPointerMove={handlePointer}
         onPointerLeave={(e) => {
@@ -269,7 +328,17 @@ function ProjectionChart({
         }}
         onPointerCancel={() => setHover(null)}
       >
-        <svg width={chartW} height={chartH} viewBox={`0 0 ${chartW} ${chartH}`} className="block">
+        <p className="sr-only" aria-live="polite" aria-atomic="true">
+          {announcement}
+        </p>
+        <svg
+          role="img"
+          aria-label={summary}
+          width={chartW}
+          height={chartH}
+          viewBox={`0 0 ${chartW} ${chartH}`}
+          className="block"
+        >
           <defs>
             <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="var(--color-steel-teal)" stopOpacity="0.3" />
@@ -415,10 +484,45 @@ export function NoteCalculator() {
   const endingValue = points[points.length - 1].value;
   const totalEarned = endingValue - principal;
 
+  const amountRef = useRef<HTMLInputElement>(null);
+
   function handlePrincipalChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const digits = e.target.value.replace(/[^0-9]/g, "");
+    const raw = e.target.value;
+    // The field reformats with thousands separators on every keystroke, which
+    // would throw the caret to the end while editing mid-number. Remember how
+    // many digits sat left of it, and put it back after the reformat.
+    const digitsLeftOfCaret = raw.slice(0, e.target.selectionStart ?? raw.length).replace(/\D/g, "").length;
+    requestAnimationFrame(() => {
+      const el = amountRef.current;
+      if (!el || document.activeElement !== el) return;
+      let seen = 0;
+      let pos = digitsLeftOfCaret === 0 ? 0 : el.value.length;
+      for (let i = 0; i < el.value.length && digitsLeftOfCaret > 0; i++) {
+        if (/\d/.test(el.value[i])) seen++;
+        if (seen === digitsLeftOfCaret) {
+          pos = i + 1;
+          break;
+        }
+      }
+      el.setSelectionRange(pos, pos);
+    });
+
+    const digits = raw.replace(/[^0-9]/g, "");
     setPrincipal(digits === "" ? 0 : Math.min(parseInt(digits, 10), PRINCIPAL_MAX));
   }
+
+  const amountHint =
+    principal === 0
+      ? "Enter an amount to see a projection."
+      : principal < PRINCIPAL_MIN
+        ? "Below the $200,000 individual investor minimum."
+        : principal >= PRINCIPAL_MAX
+          ? "Estimates are capped at $50,000,000."
+          : "$200,000 minimum for individual investors, $1,000,000 for entities.";
+
+  const chartSummary = `Projected value of ${formatCurrency(principal)} over ${term.full} at ${term.annual}, ${
+    reinvest ? "with interest reinvested monthly" : "with interest paid in cash each quarter"
+  }. It grows to ${formatCurrency(endingValue)}, earning ${formatCurrency(totalEarned)}.`;
 
   return (
     <section id="calculator" className="bg-neutral-paper">
@@ -476,8 +580,11 @@ export function NoteCalculator() {
                     </span>
                     <input
                       id="calc-principal"
+                      ref={amountRef}
                       type="text"
                       inputMode="numeric"
+                      autoComplete="off"
+                      aria-describedby="calc-principal-hint"
                       value={principal === 0 ? "" : principal.toLocaleString("en-US")}
                       onChange={handlePrincipalChange}
                       placeholder="200,000"
@@ -486,7 +593,8 @@ export function NoteCalculator() {
                   </div>
                   <input
                     type="range"
-                    aria-label="Initial investment"
+                    aria-label="Adjust initial investment"
+                    aria-describedby="calc-principal-hint"
                     min={PRINCIPAL_MIN}
                     max={PRINCIPAL_MAX_SLIDER}
                     step={25_000}
@@ -494,10 +602,8 @@ export function NoteCalculator() {
                     onChange={(e) => setPrincipal(Number(e.target.value))}
                     className="mt-3 h-6 w-full cursor-pointer accent-institutional-navy pointer-coarse:h-11"
                   />
-                  <p className="mt-1.5 text-[12px] text-neutral-mist">
-                    {principal > 0 && principal < PRINCIPAL_MIN
-                      ? "Below the $200,000 individual investor minimum."
-                      : "$200,000 minimum for individual investors, $1,000,000 for entities."}
+                  <p id="calc-principal-hint" className="mt-1.5 text-[12px] text-neutral-mist">
+                    {amountHint}
                   </p>
                 </div>
               </div>
@@ -506,7 +612,11 @@ export function NoteCalculator() {
                 <p className="mb-2.5 text-[13px] font-semibold tracking-[0.06em] text-neutral-mist uppercase">
                   Interest
                 </p>
-                <div className="relative inline-flex rounded-full border border-neutral-border bg-neutral-paper p-1">
+                <div
+                  role="group"
+                  aria-label="How interest is paid"
+                  className="relative inline-flex rounded-full border border-neutral-border bg-neutral-paper p-1"
+                >
                   {(
                     [
                       { key: true, label: "Reinvest" },
@@ -543,7 +653,7 @@ export function NoteCalculator() {
               </div>
             </div>
 
-            <div className="mt-10 grid grid-cols-2 gap-6 border-t border-neutral-border pt-8 sm:grid-cols-4">
+            <dl className="mt-10 grid grid-cols-2 gap-6 border-t border-neutral-border pt-8 sm:grid-cols-4">
               <div>
                 <dt className="text-[13px] font-semibold tracking-[0.06em] text-neutral-mist uppercase">
                   Annual rate
@@ -576,7 +686,7 @@ export function NoteCalculator() {
                   <AnimatedCurrency value={endingValue} />
                 </dd>
               </div>
-            </div>
+            </dl>
 
             <ProjectionChart
               points={points}
@@ -586,6 +696,7 @@ export function NoteCalculator() {
               monthlyRate={monthlyRate}
               endingValue={endingValue}
               resetKey={`${termIndex}-${reinvest}`}
+              summary={chartSummary}
             />
 
             <p className="mt-5 text-[12px] leading-relaxed text-neutral-mist">
