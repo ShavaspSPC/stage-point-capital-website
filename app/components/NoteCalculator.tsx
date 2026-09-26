@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, animate, motion, useInView, useReducedMotion } from "framer-motion";
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { DEFAULT_TERM_INDEX, NOTE_TERMS } from "../lib/rates";
 import { ScrollReveal } from "./ScrollReveal";
 import { useArmedReveal } from "./useArmedReveal";
@@ -24,17 +24,27 @@ const DEFAULT_CHART_WIDTH = 680;
 const MIN_TICK_GAP_PX = 64;
 const TOOLTIP_HALF_WIDTH = 64;
 
+// Built once. toLocaleString with options constructs a new formatter on every
+// call, and the animated figures format on every frame.
+const CURRENCY = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  maximumFractionDigits: 0,
+});
+const CURRENCY_COMPACT = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  notation: "compact",
+  maximumFractionDigits: 1,
+});
+const WHOLE_NUMBER = new Intl.NumberFormat("en-US");
+
 function formatCurrency(n: number): string {
-  return n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+  return CURRENCY.format(n);
 }
 
 function formatCompact(n: number): string {
-  return n.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-    notation: "compact",
-    maximumFractionDigits: 1,
-  });
+  return CURRENCY_COMPACT.format(n);
 }
 
 function parseMonthlyRate(monthly: string): number {
@@ -208,7 +218,6 @@ function ProjectionChart({
   /** Plain-language description of the whole curve, for screen readers. */
   summary: string;
 }) {
-  const gradientId = useId();
   const chartRef = useRef<HTMLDivElement>(null);
   const [hover, setHover] = useState<{ m: number; key: string } | null>(null);
   // Spoken only for keyboard use, so a mouse passing over the chart is silent.
@@ -339,13 +348,6 @@ function ProjectionChart({
           viewBox={`0 0 ${chartW} ${chartH}`}
           className="block"
         >
-          <defs>
-            <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="var(--color-steel-teal)" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="var(--color-steel-teal)" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-
           {yTicks.map((t) => (
             <g key={t}>
               <line
@@ -409,7 +411,8 @@ function ProjectionChart({
           ))}
 
           <g key={resetKey} className="animate-fade-in">
-            <path d={areaD} fill={`url(#${gradientId})`} stroke="none" />
+            {/* A flat wash, not a gradient: the design system's No-Gradient Rule. */}
+            <path d={areaD} fill="var(--color-steel-teal)" fillOpacity="0.14" stroke="none" />
             <path
               d={lineD}
               fill="none"
@@ -546,8 +549,8 @@ export function NoteCalculator() {
             See what your note could earn.
           </h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-neutral-slate">
-            Choose a term, an investment amount, and how you'd like interest paid, to see the
-            note's fixed contractual rate carried out to maturity.
+            Choose a term, an investment amount, and how you&apos;d like interest paid, to see
+            the note&apos;s fixed contractual rate carried out to maturity.
           </p>
         </ScrollReveal>
 
@@ -599,7 +602,7 @@ export function NoteCalculator() {
                       inputMode="numeric"
                       autoComplete="off"
                       aria-describedby="calc-principal-hint"
-                      value={principal === 0 ? "" : principal.toLocaleString("en-US")}
+                      value={principal === 0 ? "" : WHOLE_NUMBER.format(principal)}
                       onChange={handlePrincipalChange}
                       placeholder="200,000"
                       className="w-full border-b-2 border-neutral-border bg-transparent font-[family-name:var(--font-sans)] text-2xl font-bold text-institutional-navy outline-none transition-colors duration-150 ease-out-soft focus:border-steel-teal"
@@ -714,7 +717,7 @@ export function NoteCalculator() {
             />
 
             <p className="mt-5 text-[13px] leading-relaxed text-neutral-mist">
-              Illustrative only, based on the note's fixed contractual rate.{" "}
+              Illustrative only, based on the note&apos;s fixed contractual rate.{" "}
               {reinvest
                 ? "Assumes interest compounds monthly and remains invested through maturity."
                 : "Assumes interest is distributed in cash each quarter rather than reinvested."}{" "}

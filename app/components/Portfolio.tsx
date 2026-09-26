@@ -32,7 +32,7 @@ export function Portfolio() {
           </h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-neutral-slate">
             Stage Point Fund lends to experienced fix-and-flip contractors and entrepreneurs who
-            specialize in residential rehabilitation. More than 80% of the Fund's loans go to
+            specialize in residential rehabilitation. More than 80% of the Fund&apos;s loans go to
             borrowers who have already completed a successful project with the team.
           </p>
         </ScrollReveal>

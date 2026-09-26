@@ -15,31 +15,31 @@ colors:
   neutral-border: "#E2E8F0"
 typography:
   display:
-    fontFamily: "Source Serif 4, Georgia, serif"
+    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
     fontSize: "clamp(2.75rem, 1.5rem + 4vw, 4.5rem)"
     fontWeight: 500
     lineHeight: 1.05
     letterSpacing: "-0.01em"
   headline:
-    fontFamily: "Source Serif 4, Georgia, serif"
+    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
     fontSize: "clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem)"
     fontWeight: 500
     lineHeight: 1.15
     letterSpacing: "-0.005em"
   title:
-    fontFamily: "Inter, system-ui, sans-serif"
+    fontFamily: "Poppins, system-ui, sans-serif"
     fontSize: "1.25rem"
     fontWeight: 600
     lineHeight: 1.3
     letterSpacing: "normal"
   body:
-    fontFamily: "Inter, system-ui, sans-serif"
+    fontFamily: "Poppins, system-ui, sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.65
     letterSpacing: "normal"
   label:
-    fontFamily: "Inter, system-ui, sans-serif"
+    fontFamily: "Poppins, system-ui, sans-serif"
     fontSize: "0.8125rem"
     fontWeight: 600
     lineHeight: 1.2
@@ -121,11 +121,11 @@ The palette is restrained and asymmetric: one dominant navy, one disciplined acc
 
 ## 3. Typography
 
-**Display Font:** Source Serif 4 (with Georgia, serif fallback)
-**Body Font:** Inter (with system-ui, sans-serif fallback)
-**Label/Mono Font:** Inter, uppercase with wide letter-spacing for eyebrow labels; no separate mono face
+**Display Font:** Archivo (with Helvetica Neue, Arial, sans-serif fallback). Stands in for Acumin Pro, the Adobe face the live stagepointcapital.com uses for headings, which cannot be self-hosted; Archivo has the same neo-grotesque skeleton.
+**Body Font:** Poppins (with system-ui, sans-serif fallback), the live site's actual body face, loaded at weights 300 to 600.
+**Label/Mono Font:** Poppins, uppercase with wide letter-spacing for the small labels; no separate mono face
 
-**Character:** A print-finance serif for headlines paired with a neutral, highly legible grotesque for everything functional. The serif supplies institutional gravitas at large sizes; the sans keeps data, forms, and navigation crisp and modern.
+**Character:** A firm neo-grotesque for headlines paired with a rounder geometric sans for everything functional. There is no serif anywhere in the system: gravitas comes from scale, weight, and the navy palette, and Poppins keeps data, forms, and navigation crisp and modern.
 
 ### Hierarchy
 - **Display** (500 weight, clamp(2.75rem, 4vw, 4.5rem), 1.05 line-height): Hero headline only.
@@ -135,7 +135,9 @@ The palette is restrained and asymmetric: one dominant navy, one disciplined acc
 - **Label** (600 weight, 0.8125rem, uppercase, 0.08em letter-spacing): Eyebrow tags above headlines, nav links, stat captions.
 
 ### Named Rules
-**The Serif-For-Weight Rule.** Serif type appears only at Display and Headline sizes, where its gravitas reads clearly. Anything smaller (body, labels, UI chrome) stays in Inter; a small serif reads as a formatting mistake, not a brand choice.
+**The Two-Face Rule.** Archivo is for headings at Headline size and up; everything smaller (body, labels, figures, UI chrome) is Poppins. Do not introduce a third family.
+
+**The 13px Floor.** No running text or label is set below 13px (the Label size). The one exception is a short uppercase badge inside a diagram (the "Your position" tag, the "Paid first" rail), which may go to 12px because capitals read larger. This applies to chart axis and annotation text too: draw charts in real pixels so their text is never scaled below the floor.
 
 ## 4. Elevation
 
@@ -173,15 +175,16 @@ The system is flat by default. Depth is conveyed through tonal layering (white c
 - **Mobile:** Collapses to wordmark plus a single CTA button; anchor links move to a slide-down panel.
 
 ### Stat Callout (signature component)
-Large count-up numerals in Display-weight Inter (not serif, numerals should feel precise and tabular), Institutional Navy, with a Label-style caption beneath in Neutral Mist. Used for the track-record marquee statistics (50th consecutive quarter, $205M originations, zero principal loss).
+Large count-up numerals in bold Poppins (numerals should feel precise and tabular), Institutional Navy, with a Label-style caption beneath in Neutral Mist. The figure is always present in the server-rendered HTML; the count-up is an enhancement that runs only once the client confirms the stat is below the fold. Used for the track-record marquee statistics (50th consecutive quarter, $205M originations, zero principal loss).
 
 ## 6. Do's and Don'ts
 
 ### Do:
 - **Do** keep steel-teal (#66A7B8) under roughly 10% of any section's visual weight; it marks the single most important element, not a background.
 - **Do** use flat, bordered surfaces (1px #E2E8F0) as the default container style; reserve shadow for hover states only.
-- **Do** set all body copy in Inter at Neutral Slate (#334155) or Neutral Ink (#1A1A1A), never pure black on pure white for large text blocks.
-- **Do** reserve the serif (Source Serif 4) for Display and Headline sizes only.
+- **Do** set all body copy in Poppins at Neutral Slate (#334155) or Neutral Ink (#1A1A1A), never pure black on pure white for large text blocks.
+- **Do** reserve Archivo for Headline sizes and up.
+- **Do** ship content in its final state in the server HTML. Entrance animations (fades, count-ups, bar fills) may only collapse an element on the client after it is confirmed below the fold, so no-JS readers, crawlers, and print see the real figures.
 - **Do** let statistics render large and unadorned; the number is the persuasion, not an icon next to it.
 
 ### Don't:

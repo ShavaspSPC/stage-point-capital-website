@@ -18,7 +18,14 @@ const BENEFITS = [
 
 function CheckIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="mt-1 shrink-0 text-steel-teal-deep">
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      aria-hidden
+      className="mt-1 shrink-0 text-steel-teal-deep"
+    >
       <path
         d="M3.5 9.5L7 13l7.5-8.5"
         stroke="currentColor"

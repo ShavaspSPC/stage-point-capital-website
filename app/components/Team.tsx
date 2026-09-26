@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRightIcon } from "@phosphor-icons/react/dist/ssr";
 import { ScrollReveal } from "./ScrollReveal";
 import { MANAGEMENT, initialsOf } from "../lib/team";
 
@@ -30,13 +31,16 @@ export function Team() {
             <ScrollReveal key={member.slug} delay={i * 0.05} className="h-full">
               <Link
                 href={`/management-bios#${member.slug}`}
-                className="flex h-full flex-col overflow-hidden rounded-[10px] border border-neutral-border bg-neutral-paper transition-[box-shadow,transform,border-color] duration-[240ms] ease-out-soft hover:-translate-y-0.5 hover:border-steel-teal hover:shadow-card-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-teal"
+                aria-label={`${member.name}, ${member.shortTitle}. Read biography.`}
+                className="group flex h-full flex-col overflow-hidden rounded-[10px] border border-neutral-border bg-neutral-paper transition-[box-shadow,transform,border-color] duration-[240ms] ease-out-soft hover:-translate-y-0.5 hover:border-steel-teal hover:shadow-card-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-teal"
               >
                 <div className="relative aspect-square w-full shrink-0">
                   {member.photo ? (
                     <Image
                       src={member.photo}
-                      alt={member.name}
+                      // The name is printed beside the photo and carried by the
+                      // link's own label, so the photo adds nothing spoken.
+                      alt=""
                       fill
                       sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 45vw"
                       className="object-cover"
@@ -54,8 +58,14 @@ export function Team() {
                   )}
                 </div>
                 <div className="flex min-h-[88px] flex-1 flex-col justify-center p-5">
-                  <p className="text-[15px] font-semibold text-institutional-navy">
+                  <p className="flex items-center justify-between gap-2 text-[15px] font-semibold text-institutional-navy">
                     {member.name.split(" ")[0]}
+                    <ArrowRightIcon
+                      size={15}
+                      weight="bold"
+                      aria-hidden
+                      className="shrink-0 text-steel-teal-deep transition-transform duration-150 ease-out-soft group-hover:translate-x-1"
+                    />
                   </p>
                   <p className="mt-1 text-[13px] leading-snug text-neutral-mist">
                     {member.shortTitle}
