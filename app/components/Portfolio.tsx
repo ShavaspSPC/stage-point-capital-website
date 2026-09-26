@@ -10,12 +10,16 @@ const LOAN_STATS = [
   { label: "Gross yield", value: "18%+" },
 ];
 
+// A single measure (share of outstanding principal), so the fills step down one
+// brand hue from dark to light by rank rather than using five unrelated colors.
+// "Other" is a neutral: it is a remainder, not a place. All from the tokens in
+// globals.css; none of these is a one-off hex.
 const STATES = [
-  { state: "Rhode Island", value: 37, color: "#002060" },
-  { state: "Massachusetts", value: 29, color: "#66A7B8" },
-  { state: "Florida", value: 14, color: "#3A63B0" },
-  { state: "Pennsylvania", value: 13, color: "#8ABDCA" },
-  { state: "Other", value: 7, color: "#CBD5E1" },
+  { state: "Rhode Island", value: 37, color: "var(--color-institutional-navy)" },
+  { state: "Massachusetts", value: 29, color: "var(--color-steel-teal-deep)" },
+  { state: "Florida", value: 14, color: "var(--color-steel-teal)" },
+  { state: "Pennsylvania", value: 13, color: "var(--color-steel-teal-soft)" },
+  { state: "Other", value: 7, color: "var(--color-neutral-mist)" },
 ];
 
 export function Portfolio() {

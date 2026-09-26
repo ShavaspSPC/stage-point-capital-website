@@ -34,6 +34,12 @@
 :root {
   --background: #ffffff;
   --foreground: #334155;
+
+  /* The lighter step of the brand teal, for the fourth step of a ranked ramp
+     (portfolio bars). Decorative fills only; never text. Declared here rather
+     than in @theme because Tailwind only emits theme variables that a utility
+     class references, and this one is used through an inline style. */
+  --color-steel-teal-soft: #8abdca;
 }
 
 body {
