@@ -42,6 +42,21 @@ body {
   font-family: var(--font-sans);
 }
 
+/* Anchored sections on the offering page sit under two sticky bars (the site
+   header and the section rail, about 126px together). Each section opens with
+   generous padding of its own (6rem, 8rem from lg), so a jump only has to pull
+   the section up far enough for its heading to clear the bars with a little
+   air; without this the heading lands underneath them. */
+section[id] {
+  scroll-margin-top: 3rem;
+}
+
+@media (min-width: 1024px) {
+  section[id] {
+    scroll-margin-top: 1rem;
+  }
+}
+
 /* Fade-in for content that swaps in after an interaction (e.g. the calculator
    chart on a term change). CSS rather than JS so it always resolves to fully
    visible, even if the script that would drive it never runs. */
