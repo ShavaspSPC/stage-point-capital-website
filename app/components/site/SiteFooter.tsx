@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { LinkedinLogoIcon } from "@phosphor-icons/react/dist/ssr";
-import { INVEST_HREF, INVEST_LABEL, NAV_ITEMS, OFFICE } from "./siteNavigation";
+import { OFFERING_HREF, OFFERING_LABEL, NAV_ITEMS, OFFICE } from "./siteNavigation";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -71,10 +71,10 @@ export function SiteFooter() {
                 </li>
                 <li>
                   <Link
-                    href={INVEST_HREF}
+                    href={OFFERING_HREF}
                     className="text-[14px] text-white/70 transition-colors duration-150 hover:text-white focus-visible:text-white focus-visible:outline-none"
                   >
-                    {INVEST_LABEL}
+                    {OFFERING_LABEL}
                   </Link>
                 </li>
               </ul>

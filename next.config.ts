@@ -26,9 +26,12 @@ const nextConfig: NextConfig = {
       // so nothing that is linked or indexed becomes a 404 when the domain
       // moves here.
       { source: "/home", destination: "/", permanent: true },
-      // Both are the note-offering pitch, which is now the /invest page.
-      { source: "/value-proposition", destination: "/invest", permanent: true },
-      { source: "/landing-page", destination: "/invest", permanent: true },
+      // The offering page launched at /invest and was renamed to /offering a week
+      // later, so anything that linked to or indexed the first address follows.
+      { source: "/invest", destination: "/offering", permanent: true },
+      // Both are the note-offering pitch, which is now the /offering page.
+      { source: "/value-proposition", destination: "/offering", permanent: true },
+      { source: "/landing-page", destination: "/offering", permanent: true },
       { source: "/apply-for-access", destination: "/request-access", permanent: true },
       // Scheduling lives on the contact page.
       { source: "/calendly", destination: "/contact", permanent: true },

@@ -22,8 +22,8 @@ export const metadata: Metadata = {
 // the page routes them instead of leaving them to find it.
 const ROUTES = [
   {
-    href: "/invest",
-    heading: "I want to invest",
+    href: "/offering",
+    heading: "I'd like to learn about the offering",
     text: "Stage Point Master issues secured promissory notes across terms from 3 to 60 months. For accredited and qualified investors.",
     cta: "View the offering",
   },

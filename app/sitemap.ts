@@ -6,7 +6,7 @@ import { SITE_URL } from "./lib/site";
 // everything under /admin. Add a page here when it is added to the site.
 const PAGES = [
   "/",
-  "/invest",
+  "/offering",
   "/about",
   "/our-investment-vehicles",
   "/stage-point-fund",

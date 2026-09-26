@@ -180,15 +180,15 @@ export default function HomePage() {
           <ScrollReveal className="flex flex-col items-start justify-between gap-10 lg:flex-row lg:items-center">
             <div className="max-w-2xl">
               <h2 className="font-[family-name:var(--font-display)] text-[1.875rem] leading-[1.15] font-semibold tracking-[-0.02em] text-white md:text-[2.25rem]">
-                Secured notes, currently open to investors
+                The Stage Point Master note offering
               </h2>
               <p className="mt-4 text-[16px] leading-relaxed text-white/70">
                 Stage Point Master issues secured promissory notes across terms from 3 to 60
-                months. For accredited and qualified investors.
+                months, offered only to accredited and qualified investors.
               </p>
             </div>
             <Link
-              href="/invest"
+              href="/offering"
               className="group inline-flex shrink-0 items-center gap-2.5 rounded-md bg-neutral-white px-7 py-4 text-[15px] font-semibold whitespace-nowrap text-institutional-navy transition-[background-color,transform] duration-150 ease-out-soft hover:bg-navy-tint active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-teal"
             >
               View the offering

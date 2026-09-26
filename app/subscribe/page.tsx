@@ -16,7 +16,7 @@ export default function SubscribePage() {
     <div className="flex min-h-screen flex-col">
       <header className="border-b border-neutral-border bg-neutral-white">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-          <Link href="/invest" className="flex items-center">
+          <Link href="/offering" className="flex items-center">
             <Image
               src="/images/logo-stage-point-capital.png"
               alt="Stage Point Capital"
@@ -28,7 +28,7 @@ export default function SubscribePage() {
             <span className="sr-only">Stage Point Master, LLC</span>
           </Link>
           <Link
-            href="/invest"
+            href="/offering"
             className="text-[13px] font-semibold tracking-[0.02em] text-neutral-slate transition-colors duration-150 hover:text-institutional-navy"
           >
             Back to overview

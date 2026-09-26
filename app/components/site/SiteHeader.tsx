@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { CaretDownIcon, ListIcon, XIcon } from "@phosphor-icons/react";
-import { INVEST_HREF, INVEST_LABEL, NAV_ITEMS } from "./siteNavigation";
+import { OFFERING_HREF, OFFERING_LABEL, NAV_ITEMS } from "./siteNavigation";
 
 // The header stays solid white at every scroll position rather than starting
 // transparent over the hero: the wordmark is navy and steel-teal on a clear
@@ -162,10 +162,10 @@ export function SiteHeader() {
 
         <div className="hidden shrink-0 lg:block">
           <Link
-            href={INVEST_HREF}
+            href={OFFERING_HREF}
             className="inline-flex items-center rounded-md bg-institutional-navy px-6 py-2.5 text-[14px] font-semibold whitespace-nowrap text-white transition-[background-color,transform] duration-150 ease-out-soft hover:bg-navy-deep active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-teal"
           >
-            {INVEST_LABEL}
+            {OFFERING_LABEL}
           </Link>
         </div>
 
@@ -217,10 +217,10 @@ export function SiteHeader() {
             </ul>
           </nav>
           <Link
-            href={INVEST_HREF}
+            href={OFFERING_HREF}
             className="mt-6 inline-flex w-full items-center justify-center rounded-md bg-institutional-navy px-6 py-3.5 text-[15px] font-semibold text-white transition-transform duration-150 ease-out-soft active:scale-[0.98]"
           >
-            {INVEST_LABEL}
+            {OFFERING_LABEL}
           </Link>
         </div>
       )}

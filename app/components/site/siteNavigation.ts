@@ -50,7 +50,7 @@ export const NAV_ITEMS: NavItem[] = [
       {
         href: "/borrower-loan-intake-form",
         label: "Borrower Loan Intake Form",
-        blurb: "For investors seeking a fix and flip loan.",
+        blurb: "For borrowers seeking a fix and flip loan.",
       },
     ],
   },
@@ -58,8 +58,8 @@ export const NAV_ITEMS: NavItem[] = [
 
 // The note offering lives outside NAV_ITEMS because it is the conversion path,
 // not a peer of the informational pages. It gets the header's one button.
-export const INVEST_HREF = "/invest";
-export const INVEST_LABEL = "Invest";
+export const OFFERING_HREF = "/offering";
+export const OFFERING_LABEL = "The Offering";
 
 export const OFFICE = {
   street: "12 East 49th St. #1808",

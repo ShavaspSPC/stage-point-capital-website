@@ -51,7 +51,7 @@ export default function StagePointMasterPage() {
                   quarterly interest distributions or reinvestment.
                 </p>
                 <Link
-                  href="/invest"
+                  href="/offering"
                   className="group mt-7 inline-flex items-center gap-2.5 rounded-md bg-institutional-navy px-6 py-3.5 text-[14px] font-semibold text-white transition-[background-color,transform] duration-150 ease-out-soft hover:bg-navy-deep active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-teal"
                 >
                   View the offering
