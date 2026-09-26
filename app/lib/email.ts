@@ -107,8 +107,9 @@ const BORROWER_FIELD_LABELS: Array<[keyof BorrowerInquiry, string]> = [
   ["notes", "Additional detail"],
 ];
 
-// Where borrower loan enquiries are delivered: the head of origination.
-const BORROWER_INQUIRY_RECIPIENT = "clayton@stagepointcapital.com";
+// TEMPORARY: routed to a test inbox to verify delivery. Restore to
+// clayton@stagepointcapital.com (head of origination) after the test.
+const BORROWER_INQUIRY_RECIPIENT = "shavaspquillen@gmail.com";
 
 // Routes a borrower loan enquiry to the origination desk. Still sent *from* the
 // mailbox the site authenticates as. Reply-To is the borrower, so hitting reply
