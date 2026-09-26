@@ -379,6 +379,20 @@ function ProjectionChart({
             strokeWidth="1"
             strokeDasharray="3 3"
           />
+          {/* Names the dashed line, which is otherwise left for the reader to
+              decode. Slate rather than mist: it sits over the tinted area fill. */}
+          {principal > 0 && (
+            <text
+              x={x1 - 6}
+              y={yScale(principal) + 16}
+              textAnchor="end"
+              fontSize="12"
+              fontWeight="600"
+              fill="var(--color-neutral-slate)"
+            >
+              Initial investment
+            </text>
+          )}
 
           {xTicks.map((m) => (
             <text
@@ -390,7 +404,7 @@ function ProjectionChart({
               fontWeight="600"
               fill="var(--color-neutral-mist)"
             >
-              {m === 0 ? "Start" : `Mo ${m}`}
+              {m === 0 ? "Start" : `${m} mo`}
             </text>
           ))}
 
