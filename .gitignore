@@ -45,3 +45,4 @@ next-env.d.ts
 
 # impeccable design tool scratch cache (changes on every edit)
 .impeccable/hook.cache.json
+desktop.ini
