@@ -25,7 +25,7 @@ export const MANAGEMENT: TeamMember[] = [
     shortTitle: "Chief Executive Officer & General Counsel",
     photo: "/team/whitney-quillen.png",
     bio: [
-      "Prior to joining SPC, Whitney Quillen was the founder and CEO of W. Quillen Securities, a Finra-Member investment bank, formed in 2001 and sold in March 2009.",
+      "Prior to founding SPC, Whitney Quillen was the founder and CEO of W. Quillen Securities, a Finra-Member investment bank, formed in 2001 and sold in March 2009.",
       "Prior to forming W. Quillen Securities, Whitney was affiliated with Quilcap Corp, initially as outside counsel, and from 2000 to 2002 as in-house counsel and equity analyst. Quilcap Corp. is a long-short, value-oriented hedge fund. From 1994 to 2000, Whitney ran his own law practice focusing on commercial litigation, distressed debt resolution, and securities regulation.",
       "He has also advised hedge funds on commercial litigation affecting publicly traded equity and has served as Chairman, legal counsel, and member of various creditors' committees in bankruptcy proceedings. Whitney is a member of the Bar of the State of New York. He obtained an MBA in Corporate Finance (with Honors) from Pace University's Lubin Graduate School of Business in 1997, a JD from New York Law School in 1994, and a BA in Political Economics from Skidmore College in 1989.",
     ],
