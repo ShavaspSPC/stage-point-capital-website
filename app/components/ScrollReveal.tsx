@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { motion } from "framer-motion";
+import { useRef, type ReactNode } from "react";
+import { useArmedReveal } from "./useArmedReveal";
 
 // Entry animation for section content, written as a progressive enhancement.
 //
@@ -19,8 +20,8 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 // also keeps it out of the way of LCP. Only content the reader has to scroll
 // to is armed for animation.
 
-/** How far below the fold an element must sit before it is worth animating. */
-const ARM_THRESHOLD = 0.9;
+// The arming rule itself lives in useArmedReveal, shared with the count-up
+// stats and portfolio bars so every entrance animation follows the same one.
 
 export function ScrollReveal({
   children,
@@ -31,18 +32,8 @@ export function ScrollReveal({
   className?: string;
   delay?: number;
 }) {
-  const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
-  const [armed, setArmed] = useState(false);
-
-  useEffect(() => {
-    if (reduce || typeof IntersectionObserver === "undefined") return;
-    const el = ref.current;
-    if (!el) return;
-    if (el.getBoundingClientRect().top > window.innerHeight * ARM_THRESHOLD) {
-      setArmed(true);
-    }
-  }, [reduce]);
+  const armed = useArmedReveal(ref);
 
   if (!armed) {
     return (

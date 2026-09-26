@@ -1,8 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { animate, useInView, useReducedMotion } from "framer-motion";
+import { animate, useInView } from "framer-motion";
+import { useArmedReveal } from "./useArmedReveal";
 
+// The server-rendered text is always the real figure. The count-up only runs
+// when the counter is armed (see useArmedReveal): the client resets it to zero
+// while it is still below the fold, then counts up as it scrolls into view.
 export function CountUpStat({
   value,
   prefix = "",
@@ -19,18 +23,17 @@ export function CountUpStat({
   delay?: number;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
+  const armed = useArmedReveal(ref);
   const inView = useInView(ref, { once: true, amount: 0.5 });
-  const reduce = useReducedMotion();
 
   useEffect(() => {
     const node = ref.current;
-    if (!node) return;
+    if (!node || !armed) return;
 
-    if (reduce) {
-      node.textContent = `${prefix}${value.toFixed(decimals)}${suffix}`;
+    if (!inView) {
+      node.textContent = `${prefix}${(0).toFixed(decimals)}${suffix}`;
       return;
     }
-    if (!inView) return;
 
     const controls = animate(0, value, {
       duration,
@@ -41,12 +44,12 @@ export function CountUpStat({
       },
     });
     return () => controls.stop();
-  }, [inView, reduce, value, prefix, suffix, decimals, duration, delay]);
+  }, [armed, inView, value, prefix, suffix, decimals, duration, delay]);
 
   return (
     <span ref={ref}>
       {prefix}
-      {(0).toFixed(decimals)}
+      {value.toFixed(decimals)}
       {suffix}
     </span>
   );
