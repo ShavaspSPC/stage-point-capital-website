@@ -47,7 +47,10 @@ export const MANAGEMENT: TeamMember[] = [
     title: "Vice President & Head of Origination",
     shortTitle: "Vice President & Head of Origination",
     photo: "/team/clayton-rice.png",
-    photoPosition: "center 22%",
+    // The source is nearly square and his chin sits close to its bottom edge, so
+    // anchoring the crop to the bottom shows as much of the lower photo (and as
+    // little of the top) as a square tile can.
+    photoPosition: "center bottom",
     bio: [
       "Prior to joining Stage Point Capital, Clayton Rice was an analyst and operations manager at Human Resolution Technologies, LLC (HRT). His duties included accounting, account management, supporting capital allocation decisions, and developing internal healthcare management systems focused on driving company efficiency.",
       "Prior to joining HRT, Clayton was a summer associate and financial assistant to Managing Partner at Meads Bay Capital, a BioTech hedge fund where he analyzed IPO's, attended roadshow presentations and met management teams.",

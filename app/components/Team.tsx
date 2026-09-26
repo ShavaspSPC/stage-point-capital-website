@@ -59,7 +59,7 @@ export function Team() {
                 </div>
                 <div className="flex min-h-[88px] flex-1 flex-col justify-center p-5">
                   <p className="flex items-center justify-between gap-2 text-[15px] font-semibold text-institutional-navy">
-                    {member.name.split(" ")[0]}
+                    {member.name}
                     <ArrowRightIcon
                       size={15}
                       weight="bold"
