@@ -42,3 +42,6 @@ next-env.d.ts
 
 .vercel
 .env*
+
+# impeccable design tool scratch cache (changes on every edit)
+.impeccable/hook.cache.json
