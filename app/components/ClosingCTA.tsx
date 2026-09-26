@@ -33,7 +33,7 @@ export function ClosingCTA() {
 
           <div className="mt-12 grid gap-6 border-t border-white/15 pt-8 text-left sm:grid-cols-2">
             <div>
-              <p className="text-[11px] font-semibold tracking-[0.08em] text-white/50 uppercase">Office</p>
+              <p className="text-[13px] font-semibold tracking-[0.08em] text-white/50 uppercase">Office</p>
               <p className="mt-1.5 text-[15px] text-white/85">
                 12 East 49th St. #1808
                 <br />
@@ -41,7 +41,7 @@ export function ClosingCTA() {
               </p>
             </div>
             <div>
-              <p className="text-[11px] font-semibold tracking-[0.08em] text-white/50 uppercase">Contact</p>
+              <p className="text-[13px] font-semibold tracking-[0.08em] text-white/50 uppercase">Contact</p>
               <p className="mt-1.5 text-[15px] text-white/85">
                 (401) 227-5775
                 <br />

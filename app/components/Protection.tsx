@@ -72,7 +72,7 @@ export function Protection() {
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path d="M7 12V2M7 2L3 6M7 2l4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                  <span className="my-2 rotate-180 text-[10px] font-semibold tracking-[0.1em] uppercase [writing-mode:vertical-rl]">
+                  <span className="my-2 rotate-180 text-[12px] font-semibold tracking-[0.1em] uppercase [writing-mode:vertical-rl]">
                     Paid first
                   </span>
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -86,12 +86,12 @@ export function Protection() {
                       key={tier.tier}
                       className={`rounded-lg border p-5 ${tier.tone}`}
                     >
-                      <div className="flex items-center justify-between gap-3">
-                        <p className="text-[11px] font-semibold tracking-[0.08em] uppercase opacity-80">
+                      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
+                        <p className="text-[13px] font-semibold tracking-[0.08em] uppercase opacity-80">
                           {tier.tier}
                         </p>
                         {tier.highlight && (
-                          <span className="rounded-full bg-institutional-navy px-2.5 py-1 text-[10px] font-semibold tracking-[0.04em] text-white uppercase">
+                          <span className="rounded-full bg-institutional-navy px-2.5 py-1 text-[12px] font-semibold tracking-[0.04em] whitespace-nowrap text-white uppercase">
                             Your position
                           </span>
                         )}

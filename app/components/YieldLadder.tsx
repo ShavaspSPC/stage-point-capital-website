@@ -49,7 +49,7 @@ export function YieldLadder() {
                 className="group flex flex-1 cursor-pointer flex-col items-center gap-2 rounded-md px-1 py-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-teal"
               >
                 <span
-                  className={`text-[11px] font-semibold tabular-nums transition-colors duration-[240ms] ease-out-soft ${
+                  className={`text-[13px] font-semibold tabular-nums transition-colors duration-[240ms] ease-out-soft ${
                     isSelected ? "text-institutional-navy" : "text-neutral-mist"
                   }`}
                 >
@@ -73,7 +73,7 @@ export function YieldLadder() {
                   />
                 </span>
                 <span
-                  className={`text-[11px] font-semibold whitespace-nowrap transition-colors duration-[240ms] ease-out-soft ${
+                  className={`text-[13px] font-semibold whitespace-nowrap transition-colors duration-[240ms] ease-out-soft ${
                     isSelected ? "text-institutional-navy" : "text-neutral-mist"
                   }`}
                 >
@@ -109,13 +109,13 @@ export function YieldLadder() {
             </div>
             <dl className="grid grid-cols-2 gap-6 sm:justify-items-end">
               <div>
-                <dt className="text-[12px] font-semibold text-neutral-mist">Monthly rate</dt>
+                <dt className="text-[13px] font-semibold text-neutral-mist">Monthly rate</dt>
                 <dd className="mt-1 text-[17px] font-semibold tabular-nums text-institutional-navy">
                   {selected.monthly}
                 </dd>
               </div>
               <div>
-                <dt className="text-[12px] font-semibold text-neutral-mist">
+                <dt className="text-[13px] font-semibold text-neutral-mist">
                   Annual, non-compounded
                 </dt>
                 <dd className="mt-1 text-[17px] font-semibold tabular-nums text-institutional-navy">

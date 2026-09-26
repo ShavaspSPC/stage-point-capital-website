@@ -361,7 +361,7 @@ function ProjectionChart({
                 y={yScale(t)}
                 textAnchor="end"
                 dominantBaseline="middle"
-                fontSize="12"
+                fontSize="13"
                 fontWeight="600"
                 fill="var(--color-neutral-mist)"
               >
@@ -386,7 +386,7 @@ function ProjectionChart({
               x={x1 - 6}
               y={yScale(principal) + 16}
               textAnchor="end"
-              fontSize="12"
+              fontSize="13"
               fontWeight="600"
               fill="var(--color-neutral-slate)"
             >
@@ -400,7 +400,7 @@ function ProjectionChart({
               x={xScale(m)}
               y={chartH - 10}
               textAnchor={m === 0 ? "start" : m === months ? "end" : "middle"}
-              fontSize="12"
+              fontSize="13"
               fontWeight="600"
               fill="var(--color-neutral-mist)"
             >
@@ -462,10 +462,10 @@ function ProjectionChart({
               className="pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-[calc(100%+12px)] rounded-md border border-neutral-border bg-neutral-white px-2.5 py-1.5 shadow-card-hover"
               style={{ left: tooltipLeft, top: yScale(activeValue) }}
             >
-              <p className="text-[11px] font-semibold text-neutral-mist">
+              <p className="text-[12px] font-semibold text-neutral-mist">
                 {activeM === 0 ? "Start" : `Month ${activeM}`}
               </p>
-              <p className="text-[13px] font-bold tabular-nums text-institutional-navy">
+              <p className="text-[14px] font-bold tabular-nums text-institutional-navy">
                 {formatCurrency(activeValue)}
               </p>
             </motion.div>
@@ -616,7 +616,7 @@ export function NoteCalculator() {
                     onChange={(e) => setPrincipal(Number(e.target.value))}
                     className="mt-3 h-6 w-full cursor-pointer accent-institutional-navy pointer-coarse:h-11"
                   />
-                  <p id="calc-principal-hint" className="mt-1.5 text-[12px] text-neutral-mist">
+                  <p id="calc-principal-hint" className="mt-1.5 text-[13px] text-neutral-mist">
                     {amountHint}
                   </p>
                 </div>
@@ -659,7 +659,7 @@ export function NoteCalculator() {
                     );
                   })}
                 </div>
-                <p className="mt-2.5 max-w-[22ch] text-[12px] text-neutral-mist">
+                <p className="mt-2.5 max-w-[24ch] text-[13px] text-neutral-mist">
                   {reinvest
                     ? "Interest compounds monthly and appreciates the principal."
                     : "Interest is paid out in cash every quarter instead."}
@@ -713,7 +713,7 @@ export function NoteCalculator() {
               summary={chartSummary}
             />
 
-            <p className="mt-5 text-[12px] leading-relaxed text-neutral-mist">
+            <p className="mt-5 text-[13px] leading-relaxed text-neutral-mist">
               Illustrative only, based on the note's fixed contractual rate.{" "}
               {reinvest
                 ? "Assumes interest compounds monthly and remains invested through maturity."

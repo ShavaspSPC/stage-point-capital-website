@@ -58,7 +58,7 @@ export function Hero() {
             />
           </div>
           <div className="absolute -bottom-6 -left-6 hidden max-w-[220px] rounded-lg border border-neutral-border bg-neutral-white p-5 shadow-[0_8px_24px_rgba(0,32,96,0.08)] sm:block">
-            <p className="text-[11px] font-semibold tracking-[0.06em] text-neutral-mist uppercase">
+            <p className="text-[13px] font-semibold tracking-[0.06em] text-neutral-mist uppercase">
               First-lien collateral
             </p>
             <p className="mt-1 text-sm text-neutral-slate">
