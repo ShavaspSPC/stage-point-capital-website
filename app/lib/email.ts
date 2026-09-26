@@ -107,10 +107,13 @@ const BORROWER_FIELD_LABELS: Array<[keyof BorrowerInquiry, string]> = [
   ["notes", "Additional detail"],
 ];
 
-// Routes a borrower loan enquiry to the origination desk. Sent to the mailbox
-// the site already authenticates as, so no extra inbox has to be provisioned.
-// Reply-To is the borrower, so hitting reply in the inbox reaches them
-// directly rather than looping back to the site's own address.
+// Where borrower loan enquiries are delivered: the head of origination.
+const BORROWER_INQUIRY_RECIPIENT = "clayton@stagepointcapital.com";
+
+// Routes a borrower loan enquiry to the origination desk. Still sent *from* the
+// mailbox the site authenticates as. Reply-To is the borrower, so hitting reply
+// in the inbox reaches them directly rather than looping back to the site's own
+// address.
 export async function sendBorrowerInquiryEmail(inquiry: BorrowerInquiry): Promise<boolean> {
   const t = transporter();
   const user = process.env.SMTP_USER;
@@ -128,7 +131,7 @@ export async function sendBorrowerInquiryEmail(inquiry: BorrowerInquiry): Promis
 
   await t.sendMail({
     from: `"${FROM_NAME}" <${user}>`,
-    to: user,
+    to: BORROWER_INQUIRY_RECIPIENT,
     replyTo: inquiry.email,
     subject: `Loan intake: ${inquiry.name}${inquiry.propertyAddress ? ` - ${inquiry.propertyAddress}` : ""}`,
     text: ["New borrower loan intake submission.", "", ...lines].join("\n"),
